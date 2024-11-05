@@ -21,16 +21,19 @@ const getBody = (req, callback) => {
 };
 
 // here, you could declare one or more variables to store what comes back from the form.
-let item = "Enter something below.";
+let item = "";
 
 // here, you can change the form below to modify the input fields and what is displayed.
 // This is just ordinary html with string interpolation.
 const form = () => {
   return `
   <body>
+  <h1>Dice Roller</h1>
+  <p>This will simulate a random throw of a dice!</p>
+  <p>Enter the number of sidesyou want on your dice!</P
   <p>${item}</p>
   <form method="POST">
-  <input name="item"></input>
+  <input placeholder="Enter # Dice Sides" name="item"></input>
   <button type="submit">Submit</button>
   </form>
   </body>
@@ -45,7 +48,11 @@ const server = http.createServer((req, res) => {
       console.log("The body of the post is ", body);
       // here, you can add your own logic
       if (body["item"]) {
-        item = body["item"];
+        const input = body["item"]
+        const numberInput = parseInt(input)
+        function randomDiceRoll(numSides) {
+          return Math.ceil(Math.random() * numSides)}
+        item = randomDiceRoll(numberInput);
       } else {
         item = "Nothing was entered.";
       }
