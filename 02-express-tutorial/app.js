@@ -37,20 +37,28 @@ app.get('/api/v1/products/:productID', (req, res) =>  {
 
 //Product Search and Filter 
 app.get('/api/v1/query', (req, res) => {
-    const { search, limit } = req.query 
-    let sortedProducts = [...products];
+    const { search, productLimit: limit, maxPrice } = req.query 
+    let newProducts = [...products];
     
-    console.log('1: ', sortedProducts)
+    console.log('1: ', newProducts)
 
     if(search) {
-        sortedProducts = sortedProducts.filter((product) => {
+        newProducts = newProducts.filter((product) => {
             return product.name.startsWith(search)
         })
     }
-    if (limit) {
-        sortedProducts = sortedProducts.slice(0, Number(limit))
+
+    if (maxPrice) {
+        newProducts = newProducts.filter((product) => {
+            return product.price <= maxPrice
+        })
     }
-    res.status(200).json(sortedProducts)
+
+    if (limit) {
+        newProducts = newProducts.slice(0, Number(limit))
+    }
+
+    res.status(200).json(newProducts)
 })
 
 
