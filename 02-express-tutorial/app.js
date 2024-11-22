@@ -24,15 +24,15 @@ app.get('/api/v1/products', (req, res) => {
 app.get('/api/v1/products/:productID', (req, res) =>  {
     const { productID } = req.params
 
-    const idToFind = parseInt(productID)
-    const product = products.find((p) => p.id === idToFind)
+    const singleProduct = products.find((product) => product.id === Number(productID))
+
 
     //Product Not Found
-    if(!product) {
+    if(!singleProduct) {
         return res.status(404).send('<h1>Product Not Found</h1>')
     }
 
-    res.json(product) 
+    res.json(singleProduct) 
 })
 
 //Product Search and Filter 
@@ -43,14 +43,14 @@ app.get('/api/v1/query', (req, res) => {
     console.log('1: ', newProducts)
 
     if(search) {
-        newProducts = newProducts.filter((product) => {
-            return product.name.startsWith(search)
+        newProducts = newProducts.filter((singleProduct) => {
+            return singleProduct.name.startsWith(search)
         })
     }
 
     if (maxPrice) {
-        newProducts = newProducts.filter((product) => {
-            return product.price <= maxPrice
+        newProducts = newProducts.filter((singleProduct) => {
+            return singleProduct.price <= maxPrice
         })
     }
 
