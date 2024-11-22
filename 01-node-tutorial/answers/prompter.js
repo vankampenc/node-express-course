@@ -30,10 +30,10 @@ const form = () => {
   <body>
   <h1>Dice Roller</h1>
   <p>This will simulate a random throw of a dice!</p>
-  <p>Enter the number of sidesyou want on your dice!</P
+  <p>Enter the number of sides you want on your dice!</P
   <p>${item}</p>
   <form method="POST">
-  <input placeholder="Enter # Dice Sides" name="item"></input>
+  <input placeholder="Enter # of Dice Sides" name="item"></input>
   <button type="submit">Submit</button>
   </form>
   </body>
@@ -66,6 +66,10 @@ const server = http.createServer((req, res) => {
     res.end(form());
   }
 });
+
+server.on("request", (req) => {  
+  console.log("event received: ", req.method, req.url);  
+});  
 
 server.listen(3000);
 console.log("The server is listening on port 3000.");
