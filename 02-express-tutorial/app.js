@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 //Parsing json
 app.use(express.json());
 
+
+
 app.use('/api/v1/people', peopleRouter)
 
 
@@ -69,7 +71,7 @@ app.get('/api/v1/products/:productID', (req, res) =>  {
     const { productID } = req.params
 
     const idToFind = parseInt(productID)
-    const product = products.find((p) => p.id === idToFind)
+    const product = products.find((product) => product.id === idToFind)
 
     //Product Not Found
     if(!product) {
