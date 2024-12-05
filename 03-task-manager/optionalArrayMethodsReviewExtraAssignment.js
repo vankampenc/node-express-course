@@ -69,12 +69,15 @@ object.behavior()
   const evenNumbers = integers.filter((integer) => {
     return integer % 2 === 0
   })
-
+  
+  console.log("evenNumbers", evenNumbers)
 // - Array.prototype.map
 //   - The callback recieves each item of the array. The return value is pushed
 //     into a new array
    const numbers = [1, 2, 3];
    const doubles = numbers.map((i) => i * 2);
+
+   console.log("doubles", doubles)
 
 // - Array.prototype.forEach
 //   - `forEach` is like a "for" loop. It calls the callback for every item in
