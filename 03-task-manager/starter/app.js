@@ -11,19 +11,14 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 app.use(express.static('./public'))
 app.use(express.json())
 
-
 //routes
 
 app.use('/api/v1/tasks', tasks)
-
 
 app.use(notFound)
 app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 3000
-
-
-
 
 const start = async () => {
     try {
